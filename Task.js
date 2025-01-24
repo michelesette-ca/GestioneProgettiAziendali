@@ -21,8 +21,5 @@ class Task {
         this.priorita = priorita;
         this.responsabile = responsabile;
     }
-    AggiungiTask() {
-        console.log("aggiungi");
-    }
 }
 exports.Task = Task;

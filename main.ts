@@ -1,7 +1,7 @@
 import { Progetto } from "./Progetto";
 import { Priorita, Task, Stato } from "./Task";
 
-//#region Aggiungi Prodotto
+//#region Aggiungi Progetti
 let progettoUno = new Progetto(0, "Apple", "Mighele Colucci", new Date("2025-01-09"), new Date("2025-01-15"), 1 )
 let progettoDue = new Progetto(1, "Samsung", "Davide Sette", new Date("2025-01-14"), new Date("2025-01-15"), 1 )
 let progettoTre = new Progetto(0, "Huawei", "Mighele Colucci", new Date("2025-01-13"), new Date("2025-01-15"), 1 )
@@ -13,11 +13,9 @@ let progetti: Progetto[] = [
     progettoTre,
     progettoQuattro
 ] 
-
 console.table(progetti);
 
 let idsVisti = new Set<number>();
-let teamVisti = new Set<string>();
 
 progetti.forEach((progetto) => {
     if (idsVisti.has(progetto.id)) {
@@ -33,10 +31,11 @@ progetti.forEach((progetto) => {
         console.table(progetto); 
     }
 })
-
-progetti.splice(3);
-console.table(progetti);
 //#endregion
+
+// Elimina progetto
+progetti.splice(3); 
+console.table(progetti);
 
 //#region Aggiungi Task
 let taskUno = new Task(1, "crazione di un nuovo iphone", Stato.InProgress, Priorita.Alta, "Domenigo");
@@ -61,14 +60,20 @@ task.forEach((task) => {
         idControllati.add(task.id);
     }
 });
-
 //modifica stato task
-task.forEach((task) => {
-    if (task.id == 1) {
-        console.log(`ID task è: ${task.id} e il suo stato è: ${task.stato}`);
-        task.stato = Stato.Done
-        console.log(`ID task è: ${task.id} e il suo nuovo stato è: ${task.stato}`); 
-    }
-})
+try {
+    const idDaModificare = 5;
+    let taskDaModificare = task.find(t => t.id === idDaModificare);
 
+    if (!taskDaModificare) {
+        throw new Error(`Task con ID ${idDaModificare} non trovato.`); // Lancia un'eccezione se non esiste
+    }
+
+    console.log(`ID task è: ${taskDaModificare.id} e il suo stato è: ${taskDaModificare.stato}`);
+    taskDaModificare.stato = Stato.Done;
+    console.log(`ID task è: ${taskDaModificare.id} e il suo nuovo stato è: ${taskDaModificare.stato}`);
+
+} catch (error: any) {
+    console.error(error.message); // Mostra l'errore se il task non esiste
+}
 //#endregion

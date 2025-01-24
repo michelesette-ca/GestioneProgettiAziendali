@@ -16,9 +16,4 @@ export enum Priorita
 export class Task 
 {
     constructor (public id : number, public descrizione : string, public stato : Stato, public priorita : Priorita, public responsabile : string) {}
-
-    AggiungiTask()
-    {
-        console.log("aggiungi");        
-    }
 }
