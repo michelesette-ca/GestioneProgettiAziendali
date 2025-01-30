@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.task = exports.progetti = void 0;
 const Progetto_1 = require("./Progetto");
 const Task_1 = require("./Task");
 //#region Aggiungi Progetti
@@ -7,66 +8,71 @@ let progettoUno = new Progetto_1.Progetto(0, "Apple", "Mighele Colucci", new Dat
 let progettoDue = new Progetto_1.Progetto(1, "Samsung", "Davide Sette", new Date("2025-01-14"), new Date("2025-01-15"), 1);
 let progettoTre = new Progetto_1.Progetto(0, "Huawei", "Mighele Colucci", new Date("2025-01-13"), new Date("2025-01-15"), 1);
 let progettoQuattro = new Progetto_1.Progetto(3, "Nokia", "Davide Sette", new Date("2025-01-11"), new Date("2025-01-15"), 1);
-let progetti = [
+exports.progetti = [
     progettoUno,
     progettoDue,
     progettoTre,
     progettoQuattro
 ];
-console.table(progetti);
-let idsVisti = new Set();
-progetti.forEach((progetto) => {
-    if (idsVisti.has(progetto.id)) {
-        console.log(`ID progetto duplicato trovato: ${progetto.id} - Progetto: ${progetto.nome}`);
-    }
-    else {
-        idsVisti.add(progetto.id);
-    }
-});
+console.table(exports.progetti);
+console.log("Progetti duplicati: ");
+TrovaDuplicati(exports.progetti);
+console.log("");
+console.log("");
 //visualizza progetti per team
-progetti.forEach((progetto) => {
-    if (progetto.team == "Mighele Colucci") {
-        console.table(progetto);
-    }
-});
+Progetto_1.Progetto.VisualizzaProgettiTeam(progettoUno.team);
 //#endregion
+console.log("");
+console.log("");
+console.log("");
 // Elimina progetto
-progetti.splice(3);
-console.table(progetti);
+exports.progetti.splice(2, 1);
+console.table(exports.progetti);
+console.log("");
+console.log("");
+console.log("");
 //#region Aggiungi Task
 let taskUno = new Task_1.Task(1, "crazione di un nuovo iphone", Task_1.Stato.InProgress, Task_1.Priorita.Alta, "Domenigo");
 let taskDue = new Task_1.Task(2, "crazione di un nuovo Samsung", Task_1.Stato.ToDo, Task_1.Priorita.Bassa, "Domenigo");
-let taskTre = new Task_1.Task(3, "crazione di un nuovo Huawei", Task_1.Stato.Done, Task_1.Priorita.Media, "Domenigo");
+let taskTre = new Task_1.Task(1, "crazione di un nuovo Huawei", Task_1.Stato.Done, Task_1.Priorita.Media, "Domenigo");
 let taskQuattro = new Task_1.Task(4, "crazione di un nuovo Nokia", Task_1.Stato.InProgress, Task_1.Priorita.Alta, "Domenigo");
-let task = [
+exports.task = [
     taskUno,
     taskDue,
     taskTre,
     taskQuattro
 ];
-console.table(task);
-let idControllati = new Set();
+console.table(exports.task);
+console.log("");
+console.log("");
+console.log("Task duplicato:");
 //controllo id task duplicati
-task.forEach((task) => {
-    if (idControllati.has(task.id)) {
-        console.log(`ID task duplicato trovato: ${task.id} - Task: ${task.descrizione}`);
-    }
-    else {
-        idControllati.add(task.id);
-    }
-});
+TrovaDuplicati(exports.task);
+console.log("");
+console.log("");
+console.log("");
 //modifica stato task
-try {
-    const idDaModificare = 5;
-    let taskDaModificare = task.find(t => t.id === idDaModificare);
-    if (!taskDaModificare) {
-        throw new Error(`Task con ID ${idDaModificare} non trovato.`); // Lancia un'eccezione se non esiste
-    }
-    console.log(`ID task è: ${taskDaModificare.id} e il suo stato è: ${taskDaModificare.stato}`);
-    taskDaModificare.stato = Task_1.Stato.Done;
-    console.log(`ID task è: ${taskDaModificare.id} e il suo nuovo stato è: ${taskDaModificare.stato}`);
-}
-catch (error) {
-    console.error(error.message); // Mostra l'errore se il task non esiste
-}
+Task_1.Task.Modificatask();
+console.log("");
+console.log("");
+console.log("");
+//Task ad alta priorità
+Task_1.Task.TaskAltaPriorita();
 //#endregion
+//Funzioni(?)
+function TrovaDuplicati(lista) {
+    let idControllati = new Set();
+    let trovatoDuplicato = false;
+    lista.forEach((elemento) => {
+        if (idControllati.has(elemento.id)) {
+            console.error(`ID duplicato trovato: ${elemento.id}`);
+            trovatoDuplicato = true;
+        }
+        else {
+            idControllati.add(elemento.id);
+        }
+    });
+    if (!trovatoDuplicato) {
+        console.error("Nessun id duplicato trovato");
+    }
+}

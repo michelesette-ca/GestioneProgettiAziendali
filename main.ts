@@ -7,7 +7,7 @@ let progettoDue = new Progetto(1, "Samsung", "Davide Sette", new Date("2025-01-1
 let progettoTre = new Progetto(0, "Huawei", "Mighele Colucci", new Date("2025-01-13"), new Date("2025-01-15"), 1 )
 let progettoQuattro = new Progetto(3, "Nokia", "Davide Sette", new Date("2025-01-11"), new Date("2025-01-15"), 1 )
 
-let progetti: Progetto[] = [
+export let progetti: Progetto[] = [
     progettoUno,
     progettoDue,
     progettoTre,
@@ -15,35 +15,34 @@ let progetti: Progetto[] = [
 ] 
 console.table(progetti);
 
-let idsVisti = new Set<number>();
+console.log("Progetti duplicati: ");
 
-progetti.forEach((progetto) => {
-    if (idsVisti.has(progetto.id)) {
-        console.log(`ID progetto duplicato trovato: ${progetto.id} - Progetto: ${progetto.nome}`);
-    } else {
-        idsVisti.add(progetto.id);
-    }
-});
-
+TrovaDuplicati(progetti)
+console.log("");
+console.log("");
 //visualizza progetti per team
-progetti.forEach((progetto) => {
-    if (progetto.team == "Mighele Colucci") {
-        console.table(progetto); 
-    }
-})
+Progetto.VisualizzaProgettiTeam(progettoUno.team);
 //#endregion
 
+console.log("");
+console.log("");
+console.log("");
+
 // Elimina progetto
-progetti.splice(3); 
+progetti.splice(2, 1); 
 console.table(progetti);
+
+console.log("");
+console.log("");
+console.log("");
 
 //#region Aggiungi Task
 let taskUno = new Task(1, "crazione di un nuovo iphone", Stato.InProgress, Priorita.Alta, "Domenigo");
 let taskDue = new Task(2, "crazione di un nuovo Samsung", Stato.ToDo, Priorita.Bassa, "Domenigo")
-let taskTre = new Task(3, "crazione di un nuovo Huawei", Stato.Done, Priorita.Media, "Domenigo")
+let taskTre = new Task(1, "crazione di un nuovo Huawei", Stato.Done, Priorita.Media, "Domenigo")
 let taskQuattro = new Task(4, "crazione di un nuovo Nokia", Stato.InProgress, Priorita.Alta, "Domenigo")
 
-let task: Task[] = [
+export let task: Task[] = [
     taskUno,
     taskDue,
     taskTre,
@@ -51,29 +50,47 @@ let task: Task[] = [
 ] 
 console.table(task)
 
-let idControllati = new Set<number>();
+console.log("");
+console.log("");
+console.log("Task duplicato:");
+
 //controllo id task duplicati
-task.forEach((task) => {
-    if (idControllati.has(task.id)) {
-        console.log(`ID task duplicato trovato: ${task.id} - Task: ${task.descrizione}`);
-    } else {
-        idControllati.add(task.id);
-    }
-});
+TrovaDuplicati(task);
+
+console.log("");
+console.log("");
+console.log("");
+
 //modifica stato task
-try {
-    const idDaModificare = 5;
-    let taskDaModificare = task.find(t => t.id === idDaModificare);
+Task.Modificatask();
 
-    if (!taskDaModificare) {
-        throw new Error(`Task con ID ${idDaModificare} non trovato.`); // Lancia un'eccezione se non esiste
-    }
 
-    console.log(`ID task è: ${taskDaModificare.id} e il suo stato è: ${taskDaModificare.stato}`);
-    taskDaModificare.stato = Stato.Done;
-    console.log(`ID task è: ${taskDaModificare.id} e il suo nuovo stato è: ${taskDaModificare.stato}`);
+console.log("");
+console.log("");
+console.log("");
 
-} catch (error: any) {
-    console.error(error.message); // Mostra l'errore se il task non esiste
-}
+
+//Task ad alta priorità
+Task.TaskAltaPriorita()
 //#endregion
+
+
+//Funzioni(?)
+function TrovaDuplicati(lista: (Progetto | Task)[]) {
+    let idControllati = new Set<number>();
+    let trovatoDuplicato = false;
+
+    lista.forEach((elemento) => {
+        if (idControllati.has(elemento.id)) {
+            console.error(`ID duplicato trovato: ${elemento.id}`);
+            trovatoDuplicato = true;
+        } else {
+            idControllati.add(elemento.id);
+        }
+    });
+
+    if (!trovatoDuplicato) {
+        console.error("Nessun id duplicato trovato");
+    }
+}
+
