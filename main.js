@@ -23,7 +23,8 @@ TrovaDuplicati(exports.progetti);
 //visualizza progetti per team
 Progetto_1.Progetto.VisualizzaProgettiTeam(progettoUno.team);
 // Elimina progetto
-exports.progetti.splice(2, 1);
+console.error("Task rimosso");
+Progetto_1.Progetto.rimuoviProgetto(progettoCinque.id);
 console.table(exports.progetti);
 //Creazione di alcuni task (di prova)
 let taskUno = new Task_1.Task(1, "crazione di un nuovo iphone", Task_1.Stato.InProgress, Task_1.Priorita.Alta, "Domenigo");

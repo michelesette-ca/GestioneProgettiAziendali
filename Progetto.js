@@ -30,6 +30,17 @@ class Progetto {
             }
         });
     }
+    static rimuoviProgetto(id) {
+        let progettoDaTrovare = main_1.progetti.find(p => p.id === id);
+        if (progettoDaTrovare) {
+            let indice = main_1.progetti.indexOf(progettoDaTrovare);
+            main_1.progetti.splice(indice, 1);
+            console.log(`Progetto con ID ${id} rimosso con successo.`);
+        }
+        else {
+            console.error(`Progetto con ID ${id} non trovato.`);
+        }
+    }
     // Metodo per aggiungere un task al progetto
     AggiungiTaskAlProgetto(taskid) {
         // Controlla se il task esiste già nel progetto

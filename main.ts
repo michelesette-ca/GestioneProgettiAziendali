@@ -30,7 +30,9 @@ TrovaDuplicati(progetti)
 Progetto.VisualizzaProgettiTeam(progettoUno.team);
 
 // Elimina progetto
-progetti.splice(2, 1);
+console.error("Task rimosso");
+
+Progetto.rimuoviProgetto(progettoCinque.id);
 console.table(progetti);
 
 
