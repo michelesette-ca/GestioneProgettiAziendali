@@ -1,15 +1,17 @@
 import { Task } from "./Task";
-import { progetti } from "./main"
+import { progetti } from "./main";
 
 export class Progetto {
 
-    public task: Task[]
+    public task: number[];
 
-    constructor(public id: number, public nome: string, public team: string, public dataInizio: Date, public dataFine: Date,) {
+    constructor(public id: number, public nome: string, public team: string, public dataInizio: Date, public dataFine: Date) {
+
         this.task = [];
     }
 
-    AggiungiProgetto(progetto: Progetto) {
+    // Metodo per aggiungere un progetto
+    static AggiungiProgetto(progetto: Progetto) {
         let trovato = progetti.find(p => p.id === progetto.id);
         if (trovato) {
             console.error(`Progetto già trovato con id ${progetto.id}`);
@@ -19,24 +21,23 @@ export class Progetto {
         }
     }
 
-
+    // Metodo per visualizzare i progetti per team
     static VisualizzaProgettiTeam(teams: string) {
         progetti.forEach((progetto) => {
-            if (progetto.team == teams) {
+            if (progetto.team === teams) {
                 console.table(progetto);
             }
-        })
+        });
     }
 
-    AggiungiTaskAlProgetto(task: Task) {
+    // Metodo per aggiungere un task al progetto
+    AggiungiTaskAlProgetto(taskid: number) {
         // Controlla se il task esiste già nel progetto
-        let esiste = this.task.some(t => t.id === task.id);
-        if (esiste) {
-            console.error(`Task con ID ${task.id} già esistente nel progetto ${this.nome}.`);
+        if (this.task.includes(taskid)) {
+            console.error(`Task con ID ${taskid} già esistente nel progetto ${this.nome}.`);
         } else {
-            this.task.push(task);
-            console.log(`Task con ID ${task.id} aggiunto al progetto ${this.nome}.`);
+            this.task.push(taskid);
+            console.log(`Task con ID ${taskid} aggiunto al progetto ${this.nome}.`);
         }
     }
-
 }
