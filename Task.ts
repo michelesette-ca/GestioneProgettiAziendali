@@ -1,5 +1,4 @@
 import { task } from "./main"
-import { Progetto } from "./Progetto"
 
 export enum Stato {
     ToDo = "To Do",
