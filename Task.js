@@ -27,7 +27,7 @@ class Task {
             const idDaModificare = 4;
             let taskDaModificare = main_1.task.find(t => t.id === idDaModificare);
             if (!taskDaModificare) {
-                throw new Error(`Task con ID ${idDaModificare} non trovato.`); // Lancia un'eccezione se non esiste
+                throw new Error(`Task con ID ${idDaModificare} non trovato.\n\n`); // Lancia un'eccezione se non esiste
             }
             console.log(`ID task è: ${taskDaModificare.id} e il suo stato è: ${taskDaModificare.stato}`);
             taskDaModificare.stato = Stato.Done;
@@ -38,7 +38,7 @@ class Task {
         }
     }
     static TaskAltaPriorita() {
-        console.log("I task con priorità alta sono: ");
+        console.log("I task con priorità alta sono: \n");
         main_1.task.forEach((task) => {
             if (task.priorita == Priorita.Alta) {
                 console.table(task);

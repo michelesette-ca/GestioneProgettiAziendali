@@ -15,26 +15,19 @@ export let progetti: Progetto[] = [
 ] 
 console.table(progetti);
 
-console.log("Progetti duplicati: ");
+console.log("Progetti duplicati: \n\n");
 
 TrovaDuplicati(progetti)
-console.log("");
-console.log("");
+
 //visualizza progetti per team
 Progetto.VisualizzaProgettiTeam(progettoUno.team);
 //#endregion
 
-console.log("");
-console.log("");
-console.log("");
 
 // Elimina progetto
 progetti.splice(2, 1); 
 console.table(progetti);
 
-console.log("");
-console.log("");
-console.log("");
 
 //#region Aggiungi Task
 let taskUno = new Task(1, "crazione di un nuovo iphone", Stato.InProgress, Priorita.Alta, "Domenigo");
@@ -50,25 +43,15 @@ export let task: Task[] = [
 ] 
 console.table(task)
 
-console.log("");
-console.log("");
 console.log("Task duplicato:");
 
 //controllo id task duplicati
 TrovaDuplicati(task);
 
-console.log("");
-console.log("");
-console.log("");
+
 
 //modifica stato task
 Task.Modificatask();
-
-
-console.log("");
-console.log("");
-console.log("");
-
 
 //Task ad alta priorità
 Task.TaskAltaPriorita()
@@ -82,7 +65,7 @@ function TrovaDuplicati(lista: (Progetto | Task)[]) {
 
     lista.forEach((elemento) => {
         if (idControllati.has(elemento.id)) {
-            console.error(`ID duplicato trovato: ${elemento.id}`);
+            console.error(`ID duplicato trovato: ${elemento.id} \n\n`);
             trovatoDuplicato = true;
         } else {
             idControllati.add(elemento.id);
@@ -90,7 +73,7 @@ function TrovaDuplicati(lista: (Progetto | Task)[]) {
     });
 
     if (!trovatoDuplicato) {
-        console.error("Nessun id duplicato trovato");
+        console.error("Nessun id duplicato trovato \n\n");
     }
 }
 
