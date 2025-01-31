@@ -14,7 +14,7 @@ export enum Priorita {
 
 
 export class Task {
-    
+
     constructor(public id: number, public descrizione: string, public stato: Stato, public priorita: Priorita, public responsabile: string) { }
 
     static Modificatask() {
@@ -35,16 +35,16 @@ export class Task {
         }
     }
 
-    static TaskAltaPriorita(){
+    static TaskAltaPriorita() {
         console.log("I task con priorità alta sono: \n");
-        
+
         task.forEach((task) => {
-            if (task.priorita == Priorita.Alta){
+            if (task.priorita == Priorita.Alta) {
                 console.table(task)
             }
         })
     }
-    
+
 }
 
 

@@ -2,17 +2,17 @@ import { Progetto } from "./Progetto";
 import { Priorita, Task, Stato } from "./Task";
 
 //#region Aggiungi Progetti
-let progettoUno = new Progetto(0, "Apple", "Mighele Colucci", new Date("2025-01-09"), new Date("2025-01-15"), 1 )
-let progettoDue = new Progetto(1, "Samsung", "Davide Sette", new Date("2025-01-14"), new Date("2025-01-15"), 1 )
-let progettoTre = new Progetto(0, "Huawei", "Mighele Colucci", new Date("2025-01-13"), new Date("2025-01-15"), 1 )
-let progettoQuattro = new Progetto(3, "Nokia", "Davide Sette", new Date("2025-01-11"), new Date("2025-01-15"), 1 )
+let progettoUno = new Progetto(0, "Apple", "Mighele Colucci", new Date("2025-01-09"), new Date("2025-01-15"))
+let progettoDue = new Progetto(1, "Samsung", "Davide Sette", new Date("2025-01-14"), new Date("2025-01-15"))
+let progettoTre = new Progetto(0, "Huawei", "Mighele Colucci", new Date("2025-01-13"), new Date("2025-01-15"))
+let progettoQuattro = new Progetto(3, "Nokia", "Davide Sette", new Date("2025-01-11"), new Date("2025-01-15"))
 
-export let progetti: Progetto[] = [
+export var progetti: Progetto[] = [
     progettoUno,
     progettoDue,
     progettoTre,
     progettoQuattro
-] 
+]
 console.table(progetti);
 
 console.log("Progetti duplicati: \n\n");
@@ -25,7 +25,7 @@ Progetto.VisualizzaProgettiTeam(progettoUno.team);
 
 
 // Elimina progetto
-progetti.splice(2, 1); 
+progetti.splice(2, 1);
 console.table(progetti);
 
 
@@ -40,13 +40,13 @@ export let task: Task[] = [
     taskDue,
     taskTre,
     taskQuattro
-] 
+]
 console.table(task)
 
 console.log("Task duplicato:");
 
 //controllo id task duplicati
-TrovaDuplicati(task);
+// TrovaDuplicati(task);#
 
 
 
